@@ -9,7 +9,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-client = MongoClient(f"mongodb://{os.environ.get('DB_USERNAME')}:{os.environ.get('DB_PASSWORD')}@{os.environ.get('DB_URL')}")
+client = MongoClient(f"mongodb://{os.environ.get('DB_URL')}")
 
 
 db = client.flask_db
