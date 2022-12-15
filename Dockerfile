@@ -10,6 +10,10 @@ RUN pip3 install -r /requirements.txt
 COPY . /app
 WORKDIR /app
 
+ENV DB_USERNAME ${DB_USERNAME}
+ENV DB_PASSWORD ${DB_PASSWORD}
+ENV DB_URL ${DB_URL}
+
 EXPOSE 5000
 
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
