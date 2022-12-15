@@ -1,17 +1,22 @@
 FROM python:3.9-slim-buster
 
-RUN addgroup --system --gid 1000 worker
-RUN adduser --system --uid 1000 --ingroup worker --disabled-password worker
-USER worker:worker
-WORKDIR /home/worker
+ENV PYTHONUNBUFFERED 1
+
+ARG UID=1000
+ARG GID=1000
+
+RUN groupadd -g "${GID}" python \
+  && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" python
+USER python:python
+WORKDIR /home/python
 
 
-COPY --chown=worker:worker requirements.txt requirements.txt
+COPY --chown=python:python requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 ENV PATH="/home/${USER}/.local/bin:${PATH}"
 
-COPY --chown=worker:worker . .
+COPY --chown=python:python . .
 
 
 ARG FLASK_ENV
