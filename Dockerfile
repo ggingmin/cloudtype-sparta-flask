@@ -10,6 +10,7 @@ RUN pip3 install -r /requirements.txt
 COPY . /app
 WORKDIR /app
 
+ENV FLASK_ENV ${FLASK_ENV}
 ENV DB_USERNAME ${DB_USERNAME}
 ENV DB_PASSWORD ${DB_PASSWORD}
 ENV DB_URL ${DB_URL}
