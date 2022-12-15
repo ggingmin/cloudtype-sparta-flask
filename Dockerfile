@@ -13,7 +13,8 @@ ENV PATH="/home/${USER}/.local/bin:${PATH}"
 
 COPY --chown=worker:worker . .
 
-ARG FLASK_ENV
+ENV FLASK_ENV ${FLASK_ENV]
+
 ARG DB_USERNAME
 ARG DB_PASSWORD
 ARG DB_URL
